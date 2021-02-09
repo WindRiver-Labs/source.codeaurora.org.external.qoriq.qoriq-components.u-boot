@@ -70,11 +70,6 @@ config TARGET_MPC8349EMDS_SDRAM
 	select SYS_FSL_DDR_BE
 	select SYS_FSL_HAS_DDR2
 
-config TARGET_MPC8349ITX
-	bool "Support MPC8349ITX"
-	select ARCH_MPC8349
-	imply CMD_IRQ
-
 config TARGET_IDS8313
 	bool "Support ids8313"
 	select ARCH_MPC8313
@@ -295,7 +290,6 @@ source "board/freescale/mpc8315erdb/Kconfig"
 source "board/freescale/mpc8323erdb/Kconfig"
 source "board/freescale/mpc832xemds/Kconfig"
 source "board/freescale/mpc8349emds/Kconfig"
-source "board/freescale/mpc8349itx/Kconfig"
 source "board/ids/ids8313/Kconfig"
 source "board/keymile/Kconfig"
 source "board/mpc8308_p1m/Kconfig"
