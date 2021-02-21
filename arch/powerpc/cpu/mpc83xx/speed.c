@@ -104,9 +104,6 @@ int get_clocks(void)
 #if !defined(CONFIG_ARCH_MPC832X)
 	u32 i2c2_clk;
 #endif
-#if defined(CONFIG_ARCH_MPC8315)
-	u32 tdm_clk;
-#endif
 #if defined(CONFIG_FSL_ESDHC)
 	u32 sdhc_clk;
 #endif
@@ -128,9 +125,6 @@ int get_clocks(void)
 #if defined(CONFIG_ARCH_MPC8308) || defined(CONFIG_ARCH_MPC831X)
 	u32 pciexp1_clk;
 	u32 pciexp2_clk;
-#endif
-#if defined(CONFIG_ARCH_MPC8315)
-	u32 sata_clk;
 #endif
 
 	if ((im->sysconf.immrbar & IMMRBAR_BASE_ADDR) != (u32) im)
@@ -199,8 +193,7 @@ int get_clocks(void)
 	}
 #endif
 
-#if defined(CONFIG_ARCH_MPC8308) || defined(CONFIG_ARCH_MPC8315) || \
-	defined(CONFIG_ARCH_MPC834X)
+#if defined(CONFIG_ARCH_MPC8308) || defined(CONFIG_ARCH_MPC834X)
 	switch ((sccr & SCCR_TSEC2CM) >> SCCR_TSEC2CM_SHIFT) {
 	case 0:
 		tsec2_clk = 0;
@@ -293,25 +286,6 @@ int get_clocks(void)
 		return -8;
 	}
 #endif
-#if defined(CONFIG_ARCH_MPC8315)
-	switch ((sccr & SCCR_TDMCM) >> SCCR_TDMCM_SHIFT) {
-	case 0:
-		tdm_clk = 0;
-		break;
-	case 1:
-		tdm_clk = csb_clk;
-		break;
-	case 2:
-		tdm_clk = csb_clk / 2;
-		break;
-	case 3:
-		tdm_clk = csb_clk / 3;
-		break;
-	default:
-		/* unknown SCCR_TDMCM value */
-		return -8;
-	}
-#endif
 
 #if defined(CONFIG_ARCH_MPC834X)
 	i2c1_clk = tsec2_clk;
@@ -365,26 +339,6 @@ int get_clocks(void)
 	default:
 		/* unknown SCCR_PCIEXP2CM value */
 		return -10;
-	}
-#endif
-
-#if defined(CONFIG_ARCH_MPC8315)
-	switch ((sccr & SCCR_SATA1CM) >> SCCR_SATA1CM_SHIFT) {
-	case 0:
-		sata_clk = 0;
-		break;
-	case 1:
-		sata_clk = csb_clk;
-		break;
-	case 2:
-		sata_clk = csb_clk / 2;
-		break;
-	case 3:
-		sata_clk = csb_clk / 3;
-		break;
-	default:
-		/* unknown SCCR_SATA1CM value */
-		return -11;
 	}
 #endif
 
@@ -458,9 +412,6 @@ int get_clocks(void)
 #if defined(CONFIG_ARCH_MPC834X)
 	gd->arch.usbmph_clk = usbmph_clk;
 #endif
-#if defined(CONFIG_ARCH_MPC8315)
-	gd->arch.tdm_clk = tdm_clk;
-#endif
 #if defined(CONFIG_FSL_ESDHC)
 	gd->arch.sdhc_clk = sdhc_clk;
 #endif
@@ -485,9 +436,6 @@ int get_clocks(void)
 #if defined(CONFIG_ARCH_MPC8308) || defined(CONFIG_ARCH_MPC831X)
 	gd->arch.pciexp1_clk = pciexp1_clk;
 	gd->arch.pciexp2_clk = pciexp2_clk;
-#endif
-#if defined(CONFIG_ARCH_MPC8315)
-	gd->arch.sata_clk = sata_clk;
 #endif
 	gd->pci_clk = pci_sync_in;
 	gd->cpu_clk = gd->arch.core_clk;
@@ -554,10 +502,6 @@ static int do_clocks(struct cmd_tbl *cmdtp, int flag, int argc,
 	printf("  I2C2:                %-4s MHz\n",
 	       strmhz(buf, gd->arch.i2c2_clk));
 #endif
-#if defined(CONFIG_ARCH_MPC8315)
-	printf("  TDM:                 %-4s MHz\n",
-	       strmhz(buf, gd->arch.tdm_clk));
-#endif
 #if defined(CONFIG_FSL_ESDHC)
 	printf("  SDHC:                %-4s MHz\n",
 	       strmhz(buf, gd->arch.sdhc_clk));
@@ -583,10 +527,6 @@ static int do_clocks(struct cmd_tbl *cmdtp, int flag, int argc,
 	       strmhz(buf, gd->arch.pciexp1_clk));
 	printf("  PCIEXP2:             %-4s MHz\n",
 	       strmhz(buf, gd->arch.pciexp2_clk));
-#endif
-#if defined(CONFIG_ARCH_MPC8315)
-	printf("  SATA:                %-4s MHz\n",
-	       strmhz(buf, gd->arch.sata_clk));
 #endif
 	return 0;
 }
