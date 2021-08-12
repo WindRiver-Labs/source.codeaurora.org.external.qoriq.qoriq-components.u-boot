@@ -15,7 +15,7 @@
  * degradation (typical for EEPROM) is incured for FRAM memory:
  *
  * #define CONFIG_SYS_I2C_FRAM
- * #undef CONFIG_SYS_EEPROM_PAGE_WRITE_DELAY_MS
+ * Set CONFIG_SYS_EEPROM_PAGE_WRITE_DELAY_MS to 0
  *
  */
 
@@ -29,10 +29,6 @@
 
 #ifndef	CONFIG_SYS_I2C_SPEED
 #define	CONFIG_SYS_I2C_SPEED	50000
-#endif
-
-#ifndef CONFIG_SYS_EEPROM_PAGE_WRITE_DELAY_MS
-#define CONFIG_SYS_EEPROM_PAGE_WRITE_DELAY_MS	0
 #endif
 
 #ifndef	I2C_RXTX_LEN
@@ -178,8 +174,10 @@ static int eeprom_rw(unsigned dev_addr, unsigned offset, uchar *buffer,
 		buffer += len;
 		offset += len;
 
+#if CONFIG_SYS_EEPROM_PAGE_WRITE_DELAY_MS > 0
 		if (!read)
 			udelay(CONFIG_SYS_EEPROM_PAGE_WRITE_DELAY_MS * 1000);
+#endif
 	}
 
 	return rcode;
