@@ -84,7 +84,6 @@
 
 /* I2C Configuration */
 #define CONFIG_SYS_I2C_EEPROM_ADDR_LEN	1
-#define CONFIG_SYS_I2C_EEPROM_BUS	0
 
 /* SPL */
 
