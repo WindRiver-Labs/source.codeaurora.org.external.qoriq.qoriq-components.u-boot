@@ -26,8 +26,6 @@
 /* I2C Configuration */
 #define CONFIG_SYS_I2C_SPEED		100000
 
-#define CONFIG_SYS_I2C_EEPROM_ADDR_LEN          2
-
 #define CONFIG_FACTORYSET
 
 /* Watchdog */

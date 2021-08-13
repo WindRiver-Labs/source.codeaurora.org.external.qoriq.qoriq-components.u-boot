@@ -54,8 +54,6 @@
  * I2C EEPROM
  */
 
-#define CONFIG_SYS_I2C_EEPROM_ADDR_LEN 2
-
 /*
  * I2C RTC
  */

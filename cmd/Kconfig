@@ -619,6 +619,14 @@ config SYS_I2C_EEPROM_BUS
 	depends on CMD_EEPROM
 	default 0
 
+config SYS_I2C_EEPROM_ADDR_LEN
+	int "Length in bytes of the EEPROM memory array address"
+	depends on CMD_EEPROM || ID_EEPROM
+	default 1
+	range 1 2
+	help
+	  Note: This is NOT the chip address length!
+
 config SYS_EEPROM_SIZE
 	depends on CMD_EEPROM
 	int "Size in bytes of the EEPROM device"

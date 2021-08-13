@@ -114,6 +114,5 @@
 #define CONFIG_SYS_MONITOR_LEN		(512 * 1024)
 
 /* EEPROM */
-#define CONFIG_SYS_I2C_EEPROM_ADDR_LEN		1
 
 #endif	/* __CONFIG_CM_T43_H */

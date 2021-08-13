@@ -405,12 +405,6 @@ config SYS_I2C_EEPROM_ADDR
 
 if I2C_EEPROM
 
-config SYS_I2C_EEPROM_ADDR_LEN
-	int "Length in bytes of the EEPROM memory array address"
-	default 1
-	help
-	  Note: This is NOT the chip address length!
-
 config SYS_I2C_EEPROM_ADDR_OVERFLOW
 	hex "EEPROM Address Overflow"
 	default 0

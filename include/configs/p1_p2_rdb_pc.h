@@ -489,7 +489,6 @@
 #define CONFIG_SYS_I2C_PCA9557_ADDR	0x18
 
 /* enable read and write access to EEPROM */
-#define CONFIG_SYS_I2C_EEPROM_ADDR_LEN 1
 
 #if defined(CONFIG_PCI)
 /*

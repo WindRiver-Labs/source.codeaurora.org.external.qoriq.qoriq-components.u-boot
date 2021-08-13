@@ -120,7 +120,6 @@
 #define CONFIG_SYS_DAVINCI_I2C_SLAVE2	0x10 /* SMBus host address */
 
 /* EEPROM definitions */
-#define CONFIG_SYS_I2C_EEPROM_ADDR_LEN		2
 
 /* NAND Configuration */
 #define CONFIG_KEYSTONE_RBL_NAND
